@@ -57,14 +57,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.present(alert, animated: true, completion: nil)
     }
     
-    func getData()
-    {
-        if let myStorages = try? appDelegate.persistentContainer.viewContext.fetch(Storage.fetchRequest())
-        {
+    func getData(){
+        if let myStorages = try? appDelegate.persistentContainer.viewContext.fetch(Storage.fetchRequest()) {
             storages = myStorages
-        }
-        else
-        {
+        } else {
             printContent("error in fetching data")
         }
     }
