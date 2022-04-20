@@ -17,6 +17,7 @@
 		0661297428107FD90071EAF3 /* StorageScanner2_0Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0661297328107FD90071EAF3 /* StorageScanner2_0Tests.swift */; };
 		0661297E28107FD90071EAF3 /* StorageScanner2_0UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0661297D28107FD90071EAF3 /* StorageScanner2_0UITests.swift */; };
 		0661298028107FD90071EAF3 /* StorageScanner2_0UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0661297F28107FD90071EAF3 /* StorageScanner2_0UITestsLaunchTests.swift */; };
+		06612999281089860071EAF3 /* ItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06612998281089860071EAF3 /* ItemsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		0661297928107FD90071EAF3 /* StorageScanner2.0UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StorageScanner2.0UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0661297D28107FD90071EAF3 /* StorageScanner2_0UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageScanner2_0UITests.swift; sourceTree = "<group>"; };
 		0661297F28107FD90071EAF3 /* StorageScanner2_0UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageScanner2_0UITestsLaunchTests.swift; sourceTree = "<group>"; };
+		06612998281089860071EAF3 /* ItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 				0661295928107FD70071EAF3 /* AppDelegate.swift */,
 				0661295B28107FD70071EAF3 /* SceneDelegate.swift */,
 				0661295D28107FD70071EAF3 /* ViewController.swift */,
+				06612998281089860071EAF3 /* ItemsViewController.swift */,
 				0661295F28107FD70071EAF3 /* Main.storyboard */,
 				0661296528107FD90071EAF3 /* Assets.xcassets */,
 				0661296728107FD90071EAF3 /* LaunchScreen.storyboard */,
@@ -261,6 +264,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06612999281089860071EAF3 /* ItemsViewController.swift in Sources */,
 				0661295E28107FD70071EAF3 /* ViewController.swift in Sources */,
 				0661295A28107FD70071EAF3 /* AppDelegate.swift in Sources */,
 				0661296428107FD70071EAF3 /* StorageScanner2_0.xcdatamodeld in Sources */,
