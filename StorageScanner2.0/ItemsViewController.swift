@@ -13,6 +13,8 @@ class ItemsViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     @IBOutlet weak var tableView: UITableView!
     var items: [Item] = []
+    var thisStorage: [Item] = []
+    
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     override func viewDidLoad() {
@@ -28,6 +30,11 @@ class ItemsViewController: UIViewController, UITableViewDataSource, UITableViewD
     override func viewWillAppear(_ animated: Bool)
     {
         getData()
+        for x in items {
+            if x.location == storageTitle {
+                thisStorage.append(x)
+            }
+        }
         tableView.reloadData()
     }
     
@@ -60,6 +67,7 @@ class ItemsViewController: UIViewController, UITableViewDataSource, UITableViewD
             item.location = self.storageTitle
             
             self.items.append(item)
+            self.thisStorage.append(item)
             self.tableView.reloadData()
             appDelegate.saveContext()
         }
@@ -76,13 +84,15 @@ class ItemsViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.items.count
+        
+        return self.thisStorage.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath)
-        cell.textLabel?.text = self.items[indexPath.row].name
-        cell.detailTextLabel?.text = self.items[indexPath.row].quantity
+        //let cell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath)
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: "myCell")
+        cell.textLabel?.text = self.thisStorage[indexPath.row].name
+        cell.detailTextLabel?.text = self.thisStorage[indexPath.row].quantity
         cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
         return cell
     }
@@ -90,10 +100,12 @@ class ItemsViewController: UIViewController, UITableViewDataSource, UITableViewD
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
         let deleteAction = UITableViewRowAction(style: .default, title: "Delete") { action, indexPath in
-            let item = self.items[indexPath.row]
+            let item = self.thisStorage[indexPath.row]
             self.appDelegate.persistentContainer.viewContext.delete(item)
             try! self.appDelegate.persistentContainer.viewContext.save()
             self.getData()
+            
+            self.thisStorage.remove(at: indexPath.row)
             tableView.reloadData()
         }
         
