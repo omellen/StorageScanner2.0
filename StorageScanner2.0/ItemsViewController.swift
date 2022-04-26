@@ -12,7 +12,9 @@ class ItemsViewController: UIViewController, UITableViewDataSource, UITableViewD
     var storageTitle: String = ""
     
     @IBOutlet weak var tableView: UITableView!
+    
     var items: [Item] = []
+    var storages: [Storage] = []
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
@@ -68,12 +70,15 @@ class ItemsViewController: UIViewController, UITableViewDataSource, UITableViewD
         self.present(alert, animated: true, completion: nil)
     }
     
+    
+    
     func getData(){
         if let myItems = try? appDelegate.persistentContainer.viewContext.fetch(Item.fetchRequest()) {
             items = myItems
         } else {
             printContent("error in fetching data")
         }
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

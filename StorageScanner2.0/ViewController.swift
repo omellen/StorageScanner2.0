@@ -12,7 +12,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var tableView: UITableView!
     
     var storages: [Storage] = []
-    
+    var items: [Item] = []
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     var selectedStorage: String = ""
@@ -63,6 +63,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         } else {
             printContent("error in fetching data")
         }
+        
+        if let myItems = try? appDelegate.persistentContainer.viewContext.fetch(Item.fetchRequest()) {
+            items = myItems
+        } else {
+            printContent("error in fetching data")
+        }
     }
 
     
@@ -75,6 +81,25 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.textLabel?.text = self.storages[indexPath.row].name
         cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let deleteAction = UITableViewRowAction(style: .default, title: "Delete") { action, indexPath in
+            let storage = self.storages[indexPath.row]
+            for x in self.items {
+                if x.location == storage.name {
+                    self.appDelegate.persistentContainer.viewContext.delete(x)
+                }
+            }
+            
+            self.appDelegate.persistentContainer.viewContext.delete(storage)
+            try! self.appDelegate.persistentContainer.viewContext.save()
+            self.getData()
+            tableView.reloadData()
+            
+        }
+        
+        return [deleteAction]
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
